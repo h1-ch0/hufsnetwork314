@@ -188,6 +188,7 @@ def visualize_graph(G, title):
     
 # 사용 예시
 area_search = "Madrid"
+
 date = "Jul21"
 # filename = "/Volumes/YAHO_/009.Git_Repo/hufsnetwork314/Moscow_subway_nodes_Jul21_v2_1.xlsx"
 filename = f"{area_search}_subway_nodes_{date}_v2_1.xlsx"

@@ -219,15 +219,23 @@ def visualize_graph(G, title):
     nx.draw_networkx_edges(G, pos, edge_color='gray', alpha=0.7)
     plt.title(title)
     plt.show()
-        
+
+
+# def inputSequ?
+#todo try to define a function to input sequence of stations
+#! 여기부터 하면 된다
+
 
 # ---- 실행 예시 ----
-area_search = "Madrid"
+# area_search = "Madrid"
+area_search = input("Input city")
+date = input("Input date")
+routeType = input("Input route type: ex) subway, rail, tram, light_rail ...")
 # route = subway // 방향은 forward로 고정 // from/to tag를 사용하려면 노선마다, 지역마다 설정해야 함..ㅁ
 query = f"""
 [out:json];
 area["name:en"="{area_search}"]->.searchArea;
-relation["route"~"subway"](area.searchArea);
+relation["route"~"{routeType}"](area.searchArea);
 out meta;
 >;
 out body;
@@ -237,7 +245,7 @@ route_elements = extract_route_elements(subway_data)
 node_elements = extract_node_elements(subway_data)
 G = create_route_graph_integrated(route_elements, node_elements)
 m = create_folium_map_enhanced(G, zoom_start=12)
-m.save(f"{area_search}_subway_map_{date}.html")
+m.save(f"{area_search}_{routeType}_map_{date}.html")
 export_nodes_to_excel(G, filename=f"{area_search}_subway_nodes_{date}.xlsx")
 export_edges_to_excel(G, filename=f"{area_search}_subway_edges_{date}.xlsx")
 # print(G.nodes(data=True))  # 노드 정보 출력
