@@ -5,7 +5,6 @@ import networkx as nx
 import folium
 from collections import defaultdict
 import pandas as pd
-date = 'Jul23_v2_1'
 
 
 def extract_osm_geodata(query):
@@ -223,8 +222,8 @@ def visualize_graph(G, title):
 
 def inputSequence():
     global area_search, date, routeType, query
-    area_search = input("Input city")
-    date = input("Input date")
+    area_search = input("Input city : ex) Madrid, Moscow")
+    date = input("Input date : ex) 25Jul23_1")
     routeType = input("Input route type: ex) subway, rail, tram, light_rail ...")
     query = f"""
     [out:json];
@@ -260,7 +259,7 @@ class SubwayNetwork:
 # area_search = "Madrid"
 
 # route = subway // 방향은 forward로 고정 // from/to tag를 사용하려면 노선마다, 지역마다 설정해야 함..ㅁ
-
+inputSequence()
 subway_data = extract_osm_geodata(query)
 route_elements = extract_route_elements(subway_data)
 node_elements = extract_node_elements(subway_data)
